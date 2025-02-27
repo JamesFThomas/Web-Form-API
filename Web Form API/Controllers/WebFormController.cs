@@ -29,20 +29,19 @@ namespace Web_Form_API.Controllers
             new FormBase { Id=8, FirstName="Ava", LastName="Wilson", Message="Test message for system validation" },
             new FormBase { Id=9, FirstName="James", LastName="Anderson", Message="FormBase test entry number 9" },
             new FormBase { Id=10, FirstName="Emma", LastName="Taylor", Message="Final test data input" },
+            new FormBase { Id=22, FirstName="Remove", LastName="Me", Message="Test the delete endpoint" },
         };
 
 
-        // create logger variable for this class - figure out what it does
         private readonly ILogger<WebFormController> _logger;
 
 
-        // create class constructor
         public WebFormController(ILogger<WebFormController> logger)
         {
             _logger = logger;
         }
 
-        // first route
+        // get all forms 
         [HttpGet]
         [Route("GetAllForms")]
         public IEnumerable<FormBase> GetAllForms()
@@ -50,10 +49,46 @@ namespace Web_Form_API.Controllers
             return Forms.ToArray();
         }
 
-        // create remaining routes 
-            // get form by id
-            // delete form by id
-            // update form by id
+        // get form by id
+        [HttpGet]
+        [Route("GetFormById")]
+        public IEnumerable<FormBase> GetFormById(int id)
+        {
+            return Forms.Where(form => form.Id == id);
+        }
+
+
+        // delete form by id
+        [HttpDelete]
+        [Route("DeleteFormById")]
+        public string DeleteFormById(int id)
+        {
+            var formToBeRemoved = Forms.SingleOrDefault(form => form.Id == id);
+            
+            if (formToBeRemoved != null)
+            {
+                Forms.Remove(formToBeRemoved);
+                return $" The Form with id#: {id} was deleted";
+            }        
+            
+            return $" Form not found";
+        }
+
+        // update form by id
+        [HttpPut]
+        [Route("UpdateFormById")]
+        public string UpdateFormById(int id, [FromBody]FormBase newForm)
+        {
+            var indexOfForm = Forms.FindIndex(form => form.Id == id); 
+
+            if (indexOfForm != -1)
+            {
+                Forms[indexOfForm] = newForm;
+                return $" The Form with id#: {id} was updated";
+            }
+
+            return $" Form not found";
+        }
 
         // add tests for the routes
 
