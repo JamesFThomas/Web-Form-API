@@ -13,6 +13,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Web_Form_API.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Web_Form_API
 {
@@ -28,6 +30,11 @@ namespace Web_Form_API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // DB context using sql server
+            services.AddDbContext<FormDBContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("FormDbConnection"))); // use connection string in appsettings.json
+
+
             services.AddControllers();
             
             services.AddApiVersioning(options =>
