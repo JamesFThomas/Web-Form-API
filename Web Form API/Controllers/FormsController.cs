@@ -13,23 +13,8 @@ namespace Web_Form_API.Controllers
     [Route("[controller]")]
     public class FormsController : ControllerBase
     {
-
-        // make a list to hold the form data
-        //private static readonly Dictionary<int, FormBase> _Forms = new Dictionary<int, FormBase>()
-        //{
-        //    { 1, new FormBase { Id=1, FirstName="Johhny", LastName="Fives", Message="This is test data" }},
-        //    { 2, new FormBase { Id=2, FirstName="Emily", LastName="Smith", Message="Sample message for testing" } },
-        //    { 3, new FormBase { Id=3, FirstName="John", LastName="Doe", Message="Another test entry" }},
-        //    { 4, new FormBase { Id=4, FirstName="Sophia", LastName="Brown", Message="Testing data input format" }},
-        //    { 5, new FormBase { Id=5, FirstName="Liam", LastName="Johnson", Message="Example of a form submission" }},
-        //    { 6, new FormBase { Id=6, FirstName="Olivia", LastName="Miller", Message="Checking the message field" }},
-        //    { 7, new FormBase { Id=7, FirstName="Noah", LastName="Davis", Message="Ensuring proper formatting" }},
-        //    { 8, new FormBase { Id=8, FirstName="Ava", LastName="Wilson", Message="Test message for system validation" }},
-        //    { 9, new FormBase { Id=9, FirstName="James", LastName="Anderson", Message="FormBase test entry number 9" }},
-        //    { 10, new FormBase { Id=10, FirstName="Emma", LastName="Taylor", Message="Final test data input" }},
-        //    { 22, new FormBase { Id=22, FirstName="Remove", LastName="Me", Message="Test the delete endpoint" }},
-        //};
         
+        // local variable used to acess db context and return values
         private readonly FormDBContext _formDBContext;
 
         public FormsController(FormDBContext formDBContext)
@@ -37,7 +22,6 @@ namespace Web_Form_API.Controllers
             _formDBContext = formDBContext;
 
         }
-
 
 
         // get all forms 
@@ -52,18 +36,10 @@ namespace Web_Form_API.Controllers
         [HttpPost]
         public ActionResult Post(int id, [FromBody]FormBase newForm)
         {
-            //bool isKeyPresent = _Forms.ContainsKey(id);
-
-            //if(!isKeyPresent)
-            //{
-            //    _Forms.Add(id, newForm);
-            //    return CreatedAtAction(nameof(Get), new { id = newForm.Id }, newForm);
-            //}
-
-            //return BadRequest($"ID#: {id} already exists, use a different key to save form data");
 
             _formDBContext.Forms.Add(newForm);
-            _formDBContext.SaveChanges();
+
+            _formDBContext.SaveChanges(); // must save changes to db tables after actions
 
             return CreatedAtAction(nameof(Get), new { id = newForm.Id }, newForm);
 
@@ -98,7 +74,7 @@ namespace Web_Form_API.Controllers
                 updatedForm.LastName = newForm.LastName;
                 updatedForm.Message = newForm.Message;
 
-                _formDBContext.SaveChanges();
+                _formDBContext.SaveChanges(); // must save changes to db tables after actions
 
                 return Ok(updatedForm); 
             }
