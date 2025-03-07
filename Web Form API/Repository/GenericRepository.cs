@@ -14,15 +14,16 @@ namespace Web_Form_API.Repository
 
         public GenericRepository(DbContext dbContext) // instantiate this class with a DBContext 
         {
-            _dbContext = dbContext;
+            _dbContext = dbContext; // access to local db context
             _dbSet = _dbContext.Set<T>(); //access db tables and return values
         }
 
         public void Add(T entity)
         {
             _dbSet.Add(entity);
-            //_dbContext.Entry(entity).State = EntityState.Modified; //
+            
             _dbContext.SaveChanges(); // save recent db updates
+
         }
 
         public void Delete(int id)
@@ -49,7 +50,9 @@ namespace Web_Form_API.Repository
         public void Update(T entity)
         {
             _dbSet.Attach(entity); // add entity to db set
+            
             _dbContext.Entry(entity).State = EntityState.Modified; // 
+            
             _dbContext.SaveChanges(); // presist recent changes
         }
     }
