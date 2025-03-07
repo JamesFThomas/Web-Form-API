@@ -14,11 +14,14 @@ namespace Web_Form_API.Controllers
     [Route("[controller]")]
     public class FormsController : ControllerBase
     {
-        
-        // local variable used to access/return repository values
-        private readonly IFormsRespository _formsRepo;
 
-        public FormsController(IFormsRespository formsRepo)
+        // local variable used to access/return repository values
+        //private readonly IFormsRespository _formsRepo;
+
+        // use generic repository access in controller
+        private IGenericRepository<FormBase> _formsRepo;
+
+        public FormsController(IGenericRepository<FormBase> formsRepo)
         {
             _formsRepo = formsRepo;
 
@@ -29,7 +32,10 @@ namespace Web_Form_API.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<FormBase>> Get()
         {
-            var forms = _formsRepo.GetAllForms();
+            //var forms = _formsRepo.GetAllForms();
+            
+            var forms = _formsRepo.GetAll(); // use methods defined in generic repository class
+            
             return Ok(forms);
         }
 
@@ -38,7 +44,9 @@ namespace Web_Form_API.Controllers
         public ActionResult<IEnumerable<FormBase>> Get(int id)
         {
 
-            var foundForm = _formsRepo.GetForm(id);
+            //var foundForm = _formsRepo.GetForm(id);
+
+            var foundForm = _formsRepo.GetById(id);
 
             if (foundForm == null)
             {
@@ -54,7 +62,9 @@ namespace Web_Form_API.Controllers
         public ActionResult Post( [FromBody] FormBase newForm)
         {
 
-            _formsRepo.AddForm(newForm);
+            //_formsRepo.AddForm(newForm);
+
+           _formsRepo.Add(newForm);
 
             return CreatedAtAction(nameof(Get), new { id = newForm.Id }, newForm);
 
@@ -70,8 +80,10 @@ namespace Web_Form_API.Controllers
                 return BadRequest();
             }
 
-            _formsRepo.UpdateForm(newForm);
-         
+            //_formsRepo.UpdateForm(newForm);
+
+            _formsRepo.Update(newForm);
+
             return NoContent();
 
         }
@@ -82,7 +94,9 @@ namespace Web_Form_API.Controllers
         public ActionResult<string> Delete(int id)
         {
 
-            _formsRepo.DeleteForm(id);
+            //_formsRepo.DeleteForm(id);
+
+            _formsRepo.Delete(id);
 
             return NoContent();
         }
