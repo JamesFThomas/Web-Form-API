@@ -15,6 +15,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Web_Form_API.Data;
 using Microsoft.EntityFrameworkCore;
+using Web_Form_API.Repository;
 
 namespace Web_Form_API
 {
@@ -33,6 +34,11 @@ namespace Web_Form_API
             // DB context using sql server
             services.AddDbContext<FormDBContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("FormDbConnection"))); // use connection string in appsettings.json
+
+
+            // FormsRespositoy dependency injection for application
+            services.AddScoped<IFormsRespository, FormsRespository>();
+            
 
 
             services.AddControllers();
