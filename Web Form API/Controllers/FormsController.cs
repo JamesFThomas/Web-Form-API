@@ -29,7 +29,6 @@ namespace Web_Form_API.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<FormBase>> Get()
         {
-            //var forms = _formsRepo.Forms.ToList();
             var forms = _formsRepo.GetAllForms();
             return Ok(forms);
         }
@@ -38,8 +37,6 @@ namespace Web_Form_API.Controllers
         [HttpGet("{id}")]
         public ActionResult<IEnumerable<FormBase>> Get(int id)
         {
-
-            //var foundForm = _formsRepo.Forms.FirstOrDefault(form => form.Id == id);
 
             var foundForm = _formsRepo.GetForm(id);
 
@@ -57,9 +54,6 @@ namespace Web_Form_API.Controllers
         public ActionResult Post( [FromBody] FormBase newForm)
         {
 
-            //_formsRepo.Forms.Add(newForm);
-            //_formsRepo.SaveChanges(); // must save changes to db tables after actions
-
             _formsRepo.AddForm(newForm);
 
             return CreatedAtAction(nameof(Get), new { id = newForm.Id }, newForm);
@@ -76,25 +70,10 @@ namespace Web_Form_API.Controllers
                 return BadRequest();
             }
 
-            //var updatedForm = _formsRepo.Forms.FirstOrDefault(form => form.Id == id);
-
-            //if (updatedForm != null)
-            //{
-            //    //updatedForm.Id = newForm.Id; // changing id value causes error in program. 
-            //    updatedForm.FirstName = newForm.FirstName;
-            //    updatedForm.LastName = newForm.LastName;
-            //    updatedForm.Message = newForm.Message;
-
-            //    _formsRepo.SaveChanges(); // must save changes to db tables after actions
-
-            //    return Ok(updatedForm); 
-
-            //}
-
             _formsRepo.UpdateForm(newForm);
+         
             return NoContent();
 
-            //return NotFound();
         }
 
 
@@ -102,14 +81,6 @@ namespace Web_Form_API.Controllers
         [HttpDelete("{id}")]
         public ActionResult<string> Delete(int id)
         {
-            //var formToBeRemoved = _formsRepo.Forms.FirstOrDefault(form => form.Id == id);
-            
-            //if (formToBeRemoved != null)
-            //{
-            //    _formsRepo.Forms.Remove(formToBeRemoved);
-            //    _formsRepo.SaveChanges(); // must save changes to db tables after actions
-            //    return Ok($"form id#: {id} was deleted");
-            //}
 
             _formsRepo.DeleteForm(id);
 
