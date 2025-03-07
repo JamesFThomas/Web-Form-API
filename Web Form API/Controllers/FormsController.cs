@@ -21,6 +21,7 @@ namespace Web_Form_API.Controllers
         // use generic repository access in controller
         private IGenericRepository<FormBase> _formsRepo;
 
+        // instantiate this controller using the generic repo class type
         public FormsController(IGenericRepository<FormBase> formsRepo)
         {
             _formsRepo = formsRepo;
