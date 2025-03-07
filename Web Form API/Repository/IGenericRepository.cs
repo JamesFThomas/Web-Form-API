@@ -7,7 +7,7 @@ namespace Web_Form_API.Repository
 {
     public interface IGenericRepository<T> where T : class
     {
-        // allows us to set the basic structure of any respository we add to this application in the future
+        // basic structure of any respository we add to this application in the future
         IEnumerable<T> GetAll();
 
         T GetById(int id);
