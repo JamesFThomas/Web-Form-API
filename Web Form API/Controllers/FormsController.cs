@@ -16,12 +16,17 @@ namespace Web_Form_API.Controllers
     {
 
         // use generic repository access in controller
-        private IGenericRepository<FormBase> _formsRepo;
+        private IGenericRepository<FormBase> _genericRepo;
+
+        // use FormsRepository for Form specific route
+        private readonly IFormsRespository _formsRespository;
 
         // instantiate this controller using the generic repo class type
-        public FormsController(IGenericRepository<FormBase> formsRepo)
+        public FormsController(IGenericRepository<FormBase> genericRepo, IFormsRespository formsRepo)
         {
-            _formsRepo = formsRepo;
+            _genericRepo = genericRepo;
+            _formsRespository = formsRepo;
+
 
         }
 
@@ -30,7 +35,7 @@ namespace Web_Form_API.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<FormBase>> Get()
         {
-            var forms = _formsRepo.GetAll(); // use methods defined in generic repository class
+            var forms = _genericRepo.GetAll(); // use methods defined in generic repository class
             
             return Ok(forms);
         }
@@ -40,7 +45,7 @@ namespace Web_Form_API.Controllers
         public ActionResult<IEnumerable<FormBase>> Get(int id)
         {
 
-            var foundForm = _formsRepo.GetById(id);
+            var foundForm = _genericRepo.GetById(id);
 
             if (foundForm == null)
             {
@@ -56,7 +61,7 @@ namespace Web_Form_API.Controllers
         public ActionResult Post( [FromBody] FormBase newForm)
         {
 
-           _formsRepo.Add(newForm);
+            _genericRepo.Add(newForm);
 
             return CreatedAtAction(nameof(Get), new { id = newForm.Id }, newForm);
 
@@ -72,7 +77,7 @@ namespace Web_Form_API.Controllers
                 return BadRequest();
             }
 
-            _formsRepo.Update(newForm);
+            _genericRepo.Update(newForm);
 
             return NoContent();
 
@@ -84,9 +89,26 @@ namespace Web_Form_API.Controllers
         public ActionResult<string> Delete(int id)
         {
 
-            _formsRepo.Delete(id);
+            _genericRepo.Delete(id);
 
             return NoContent();
+        }
+
+
+        // get completed forms
+        [HttpGet("completed")]
+        public ActionResult<IEnumerable<FormBase>> GetCompletedForms()
+        {
+
+            var foundForm = _formsRespository.GetCompletedForms();
+
+            if (foundForm == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(foundForm);
+
         }
 
     }
