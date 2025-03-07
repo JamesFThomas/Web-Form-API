@@ -11,5 +11,6 @@ namespace Web_Form_API.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Message { get; set; }
+        public bool Completed { get; set; }
     }
 }

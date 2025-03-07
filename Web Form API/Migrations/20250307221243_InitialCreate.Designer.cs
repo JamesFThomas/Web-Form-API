@@ -9,7 +9,7 @@ using Web_Form_API.Data;
 namespace Web_Form_API.Migrations
 {
     [DbContext(typeof(FormDBContext))]
-    [Migration("20250305230703_InitialCreate")]
+    [Migration("20250307221243_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,9 @@ namespace Web_Form_API.Migrations
                 {
                     b.Property<int>("Id")
                         .HasColumnType("int");
+
+                    b.Property<bool>("Completed")
+                        .HasColumnType("bit");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
@@ -42,6 +45,7 @@ namespace Web_Form_API.Migrations
                         new
                         {
                             Id = 1,
+                            Completed = false,
                             FirstName = "Johhny",
                             LastName = "Fives",
                             Message = "This is test data"
@@ -49,6 +53,7 @@ namespace Web_Form_API.Migrations
                         new
                         {
                             Id = 2,
+                            Completed = false,
                             FirstName = "Emily",
                             LastName = "Smith",
                             Message = "Sample message for testing"
@@ -56,6 +61,7 @@ namespace Web_Form_API.Migrations
                         new
                         {
                             Id = 3,
+                            Completed = false,
                             FirstName = "John",
                             LastName = "Doe",
                             Message = "Another test entry"
@@ -63,6 +69,7 @@ namespace Web_Form_API.Migrations
                         new
                         {
                             Id = 4,
+                            Completed = false,
                             FirstName = "Sophia",
                             LastName = "Brown",
                             Message = "Testing data input format"
@@ -70,6 +77,7 @@ namespace Web_Form_API.Migrations
                         new
                         {
                             Id = 5,
+                            Completed = false,
                             FirstName = "Liam",
                             LastName = "Johnson",
                             Message = "Example of a form submission"
@@ -77,6 +85,7 @@ namespace Web_Form_API.Migrations
                         new
                         {
                             Id = 6,
+                            Completed = false,
                             FirstName = "Olivia",
                             LastName = "Miller",
                             Message = "Checking the message field"
@@ -84,6 +93,7 @@ namespace Web_Form_API.Migrations
                         new
                         {
                             Id = 7,
+                            Completed = false,
                             FirstName = "Noah",
                             LastName = "Davis",
                             Message = "Ensuring proper formatting"
@@ -91,6 +101,7 @@ namespace Web_Form_API.Migrations
                         new
                         {
                             Id = 8,
+                            Completed = false,
                             FirstName = "Ava",
                             LastName = "Wilson",
                             Message = "Test message for system validation"
@@ -98,6 +109,7 @@ namespace Web_Form_API.Migrations
                         new
                         {
                             Id = 9,
+                            Completed = false,
                             FirstName = "James",
                             LastName = "Anderson",
                             Message = "FormBase test entry number 9"
@@ -105,6 +117,7 @@ namespace Web_Form_API.Migrations
                         new
                         {
                             Id = 10,
+                            Completed = false,
                             FirstName = "Emma",
                             LastName = "Taylor",
                             Message = "Final test data input"
@@ -112,6 +125,7 @@ namespace Web_Form_API.Migrations
                         new
                         {
                             Id = 22,
+                            Completed = false,
                             FirstName = "Remove",
                             LastName = "Me",
                             Message = "Test the delete endpoint"
