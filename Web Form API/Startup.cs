@@ -45,6 +45,19 @@ namespace Web_Form_API
             // Register the db context to be used
             services.AddScoped(typeof(DbContext), typeof(FormDBContext));
 
+            /* Adding these options allowed me to make request from th Web Form Frontend project*/
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigins",
+                builder =>
+                {
+                    builder.WithOrigins("http://localhost:3000") 
+                           .AllowAnyMethod()
+                           .AllowAnyHeader()
+                           .AllowCredentials(); 
+                });
+            });
+
 
             services.AddControllers();
             
@@ -85,6 +98,8 @@ namespace Web_Form_API
             });
 
             app.UseRouting();
+
+            app.UseCors("AllowAllOrigins"); // Enable CORS before authorization so frontend can use API
 
             app.UseAuthorization();
 
