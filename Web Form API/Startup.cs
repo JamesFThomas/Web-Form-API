@@ -59,6 +59,14 @@ namespace Web_Form_API
             });
 
 
+            // Ensure data is sent in Pascal case
+            services.AddControllers()
+            .AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.PropertyNamingPolicy = null;
+            });
+
+
             services.AddControllers();
             
             services.AddApiVersioning(options =>
