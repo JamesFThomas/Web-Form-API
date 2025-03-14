@@ -10,10 +10,17 @@ using Web_Form_API.Repository;
 
 namespace Web_Form_API.Controllers
 {
+
+    // TODO update FormBase to include new fields for login/register process -> UserName & Email Address
+    // TODO -> Create a route that searches for user name || email addresses to confirm login / registration 
+
+
+
     [ApiController]
     [Route("[controller]")]
     public class FormsController : ControllerBase
     {
+
 
         // use generic repository access in controller
         private IGenericRepository<FormBase> _genericRepo;
@@ -110,6 +117,7 @@ namespace Web_Form_API.Controllers
             return Ok(foundForm);
 
         }
+
 
     }
 }
