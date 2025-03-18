@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Web_Form_API.Classes;
 using Web_Form_API.Models;
 
 namespace Web_Form_API.Data
@@ -19,6 +20,9 @@ namespace Web_Form_API.Data
         // create a db table for form data submission
         public DbSet<FormBase> Forms { get; set; }
 
+        // Adding User table fro login functionality
+        public DbSet<UserBase> Users { get; set; }
+
         // method to seed db tables with mock data 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -28,6 +32,16 @@ namespace Web_Form_API.Data
             modelBuilder.Entity<FormBase>()
                 .Property(f => f.Id)
                 .ValueGeneratedNever(); // will not auto increment id column
+
+            // Setting primary key of Users table and seeding data
+            modelBuilder.Entity<UserBase>().HasKey(u => u.Id); // Set the primary key
+
+            modelBuilder.Entity<UserBase>().HasData(
+                new UserBase { Id = 1, Username = "johndoe", Email = "password123" }, 
+                new UserBase { Id = 2, Username = "emilysmith", Email = "password456" }, 
+                new UserBase { Id = 3, Username = "liamjohnson", Email = "password789" }                
+                // Add more users as needed
+                );
 
 
             modelBuilder.Entity<FormBase>().HasData(
