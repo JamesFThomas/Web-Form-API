@@ -41,5 +41,14 @@ namespace Web_Form_API.Controllers
             return Ok(user);
         }
 
+        // post a user 
+        [HttpPost]
+        public ActionResult<UserBase> Post(UserBase user)
+        {
+            _usersRespository.AddUser(user);
+
+            return CreatedAtAction(nameof(Get), new { id = user.Id }, user);
+        }
+
     }
 }

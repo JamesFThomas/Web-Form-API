@@ -12,5 +12,7 @@ namespace Web_Form_API.Repository
         IEnumerable<UserBase> GetAllUsers();
 
         UserBase GetUserByEmail(string email);
+
+        void AddUser(UserBase user);
     }
 }

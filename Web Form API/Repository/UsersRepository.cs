@@ -19,6 +19,17 @@ namespace Web_Form_API.Repository
             _formDBContext = formDBContext;
 
         }
+
+        public void AddUser(UserBase user)
+        {
+            // Add the user to the Users table
+            _formDBContext.Add(user);
+                    
+            // Save changes to the database
+            _formDBContext.SaveChanges();
+
+        }
+
         public IEnumerable<UserBase> GetAllUsers()
         {
             return _formDBContext.Set<UserBase>().ToList();
