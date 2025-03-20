@@ -57,7 +57,7 @@
  - POST /User
 
 
- ![Alt text](Assets/swaggerRoutes.png?raw=true "Current API Routes")
+ ![Alt text](/Assets/swaggerRoutes.png?raw=true "Current API Routes")
 
    
  example User
