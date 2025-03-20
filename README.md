@@ -55,7 +55,11 @@
  - GET /Users
  - GET /Users/{email}
  - POST /User
- 
+
+
+ ![screenshot of routes in swagger](Assets/swaggerRoutes.png)
+
+   
  example User
  ``` C#
      public class UserBase
