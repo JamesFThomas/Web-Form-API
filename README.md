@@ -1,5 +1,7 @@
 # Web Form API
  
+# Web Form API
+ 
  Web Form API is a C#, entity framework core application that persists submitted form information into a local SQL server instance.   
  
  ## Purpose:
@@ -28,12 +30,14 @@
  DB setup_
 
  To create migration files 
- ```
+
+ ```Text
  Add-Migration <Migration name>
  ```
 
  To create local dbinstance 
- ```
+
+ ```text
  Update-Database
  ```
 
@@ -80,4 +84,7 @@
  - Update the project to modern versions of all packages
  - Add tests for each route 
  - Add web tokens/user authorization 
+ 
+
+
  
