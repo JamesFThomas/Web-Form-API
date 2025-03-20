@@ -57,7 +57,7 @@
  - POST /User
 
 
- ![current routes in swagger](https://drive.google.com/file/d/1FIrX-NsZC_ierihH_YkmUukU33FZesVK/view?usp=sharing)
+ ![current routes in swagger](http://drive.google.com/file/d/1FIrX-NsZC_ierihH_YkmUukU33FZesVK/view?usp=sharing)
  
  
  example User
