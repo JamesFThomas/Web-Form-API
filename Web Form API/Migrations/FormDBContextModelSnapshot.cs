@@ -39,20 +39,32 @@ namespace Web_Form_API.Migrations
                         new
                         {
                             Id = 1,
-                            Email = "password123",
+                            Email = "jDoe@email.com",
                             Username = "johndoe"
                         },
                         new
                         {
                             Id = 2,
-                            Email = "password456",
+                            Email = "ESMITH@EMAIL.COM",
                             Username = "emilysmith"
                         },
                         new
                         {
                             Id = 3,
-                            Email = "password789",
+                            Email = "ljohnson@email.com",
                             Username = "liamjohnson"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Email = "dWilly@email.com",
+                            Username = "danielweill"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Email = "jthomas@email.com",
+                            Username = "jamesfthomas"
                         });
                 });
 

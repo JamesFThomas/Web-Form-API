@@ -39,7 +39,7 @@ namespace Web_Form_API.Repository
         // TODO update to use non case sensitivity and matching on username and email
         public UserBase GetUserByEmail(string email)
         {
-            var user = _formDBContext.Set<UserBase>().FirstOrDefault(user => user.Email == email);
+            var user = _formDBContext.Set<UserBase>().FirstOrDefault(user => user.Email.ToLower() == email.ToLower());
 
             return user;
         }

@@ -37,9 +37,11 @@ namespace Web_Form_API.Data
             modelBuilder.Entity<UserBase>().HasKey(u => u.Id); // Set the primary key
 
             modelBuilder.Entity<UserBase>().HasData(
-                new UserBase { Id = 1, Username = "johndoe", Email = "password123" }, 
-                new UserBase { Id = 2, Username = "emilysmith", Email = "password456" }, 
-                new UserBase { Id = 3, Username = "liamjohnson", Email = "password789" }                
+                new UserBase { Id = 1, Username = "johndoe", Email = "jDoe@email.com" }, 
+                new UserBase { Id = 2, Username = "emilysmith", Email = "ESMITH@EMAIL.COM" }, 
+                new UserBase { Id = 3, Username = "liamjohnson", Email = "ljohnson@email.com" },
+                new UserBase { Id = 4, Username = "danielweill", Email = "dWilly@email.com" },
+                new UserBase { Id = 5, Username = "jamesfthomas", Email = "jthomas@email.com" }
                 // Add more users as needed
                 );
 

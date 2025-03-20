@@ -2,7 +2,7 @@
 
 namespace Web_Form_API.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class FormsAndUsersTablesWithSeedData : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -19,6 +19,20 @@ namespace Web_Form_API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Forms", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Username = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.InsertData(
@@ -38,12 +52,27 @@ namespace Web_Form_API.Migrations
                     { 10, false, "Emma", "Taylor", "Final test data input" },
                     { 22, false, "Remove", "Me", "Test the delete endpoint" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "Email", "Username" },
+                values: new object[,]
+                {
+                    { 1, "jDoe@email.com", "johndoe" },
+                    { 2, "ESMITH@EMAIL.COM", "emilysmith" },
+                    { 3, "ljohnson@email.com", "liamjohnson" },
+                    { 4, "dWilly@email.com", "danielweill" },
+                    { 5, "jthomas@email.com", "jamesfthomas" }
+                });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "Forms");
+
+            migrationBuilder.DropTable(
+                name: "Users");
         }
     }
 }
