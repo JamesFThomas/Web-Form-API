@@ -57,7 +57,7 @@
  - POST /User
 
 
- ![current routes in swagger](Assets/swaggerRoutes.png "Current API Routes")
+ ![current routes in swagger](https://drive.google.com/file/d/1FIrX-NsZC_ierihH_YkmUukU33FZesVK/view?usp=drive_link)
 
  
  example User
