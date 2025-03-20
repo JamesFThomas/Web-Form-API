@@ -16,10 +16,28 @@
  ## Installation:
  
  Packages_ 
+ - Microsoft.AspNetCore.Mvc.Versioning - v4.2.0
+ - Microsoft.EntityFrameworkCore - v3.1.32
+ - Microsoft.EntityFrameworkCore.Design - v3.1.32
+ - Microsoft.EntityFrameworkCore.SqlServer - v3.1.32
+ - Microsoft.EntityFrameworkCore.Tools - v3.1.32
+ - Swashbuckle.AspNetCore - v5.6.3
+
  
  
  DB setup_
- 
+
+ To create migration files 
+ ```
+ Add-Migration <Migration name>
+ ```
+
+ To create local dbinstance 
+ ```
+ Update-Database
+ ```
+
+  
  
  ### Routes:
  Forms
