@@ -57,8 +57,7 @@
  - POST /User
 
 
- ![image](https://drive.google.com/file/d/1FIrX-NsZC_ierihH_YkmUukU33FZesVK/view?usp=sharing)
- 
+![Image](https://github.com/user-attachments/assets/ed7d74af-d01f-420e-856e-c84cb6325d8e) 
  
  example User
  ``` C#
