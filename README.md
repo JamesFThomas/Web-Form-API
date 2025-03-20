@@ -57,9 +57,9 @@
  - POST /User
 
 
- ![current routes in swagger](Web Form API/Assets/swaggerRoutes.png?raw=true "Current API Routes")
+ ![current routes in swagger](\Web Form API\Assets\swaggerRoutes.png?raw=true "Current API Routes")
 
-   
+ 
  example User
  ``` C#
      public class UserBase
