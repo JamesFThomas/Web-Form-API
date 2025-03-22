@@ -13,7 +13,5 @@ namespace Web_Form_API.Repository
         // route specifc for the Forms data not used by the generic repository class
         IEnumerable<FormBase> GetCompletedForms();
 
-        
-
     }
 }

@@ -31,9 +31,13 @@ namespace Web_Form_API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // DB context using sql server
+            // setting up application to connect with environment variable
+            var connectionString = Environment.GetEnvironmentVariable("WebFormAPI_DB_ConnectionString");
+
+
+            // DB context using sql server, connection using environment variable 
             services.AddDbContext<FormDBContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("FormDbConnection"))); // use connection string in appsettings.json
+            options.UseSqlServer(connectionString));  
 
 
             // FormsRespositoy dependency injection for application
@@ -101,6 +105,7 @@ namespace Web_Form_API
             app.UseHttpsRedirection();
 
             app.UseSwagger();
+
             app.UseSwaggerUI(options =>
             {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "Web Form API v1");
