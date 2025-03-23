@@ -43,6 +43,7 @@ namespace Web_Form_API
             // FormsRespositoy dependency injection for application
             services.AddScoped<IFormsRespository, FormsRespository>();
 
+            // user repository dependency injection
             services.AddScoped<IUsersRepository, UsersRepository>();
 
             // Generic Repository depency injection 
