@@ -10,12 +10,11 @@ jobs:
   publish_api:
     runs-on: windows-latest
 
-
     steps: 
       - uses: actions/checkout@v3
 
       - name: Setup .NET
-        uses: actions/setup-donet@v3
+        uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '8.x'
 
@@ -27,5 +26,3 @@ jobs:
 
       - name: Publish
         run: dotnet publish "./Web Form API.sln" --configuration Release --no-build
-        
-    
