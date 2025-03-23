@@ -8,7 +8,7 @@ on:
 
 jobs:
   publish_api:
-    runs-on: window-latest
+    runs-on: windows-latest
 
 
     steps: 
@@ -17,7 +17,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-donet@v3
         with:
-          dotnet-version: '8.0.x'
+          dotnet-version: '8.x'
 
       - name: Restore
         run: dotnet restore "./Web Form API.sln"
