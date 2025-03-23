@@ -1,0 +1,31 @@
+name: Publish API 👾
+
+on: 
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish_api:
+    runs-on: window-latest
+
+
+    steps: 
+      - uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-donet@v3
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore
+        run: dotnet restore "./Web Form API.sln"
+
+      - name: Build
+        run: dotnet build "./Web Form API.sln" --configuration Release --no-restore        
+
+      - name: Publish
+        run: dotnet publish "./Web Form API.sln" --configuration Release --no-build
+        
+    
