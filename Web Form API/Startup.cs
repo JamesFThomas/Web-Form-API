@@ -49,6 +49,9 @@ namespace Web_Form_API
             // Generic Repository depency injection 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
+            
+            services.AddScoped(typeof(DbContext), typeof(FormDBContext));
+
 
             /* Adding these options allowed me to make request from th Web Form Frontend project*/
             services.AddCors(options =>
