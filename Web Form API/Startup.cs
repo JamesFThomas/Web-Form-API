@@ -49,8 +49,6 @@ namespace Web_Form_API
             // Generic Repository depency injection 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
-            // Register the db context to be used
-            services.AddScoped(typeof(DbContext), typeof(FormDBContext));
 
             /* Adding these options allowed me to make request from th Web Form Frontend project*/
             services.AddCors(options =>
@@ -58,7 +56,7 @@ namespace Web_Form_API
                 options.AddPolicy("AllowAllOrigins",
                 builder =>
                 {
-                    builder.WithOrigins("http://localhost:3000") 
+                    builder.WithOrigins("http://localhost:3000", "https://web-form-frontend.netlify.app") 
                            .AllowAnyMethod()
                            .AllowAnyHeader()
                            .AllowCredentials(); 
@@ -72,9 +70,6 @@ namespace Web_Form_API
             {
                 options.JsonSerializerOptions.PropertyNamingPolicy = null;
             });
-
-
-            services.AddControllers();
             
             services.AddApiVersioning(options =>
             {
@@ -102,8 +97,17 @@ namespace Web_Form_API
             {
                 app.UseDeveloperExceptionPage();
             }
+            // else condition added to handle cors when deployed
+            else 
+            { 
+                app.UseExceptionHandler("/Home/Error"); 
+                app.UseHsts(); 
+            }
 
             app.UseHttpsRedirection();
+
+            // Serve static files (to be used later if needed)
+            app.UseStaticFiles(); // Uncomment this line if you add static files to serve
 
             app.UseSwagger();
 
